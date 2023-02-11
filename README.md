@@ -51,7 +51,7 @@ There are tons of data visualization tutorials available online. It's impossible
 
 -   [**ggplot2 cheatsheet**](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf) - the Posit team created a nice cheatsheet guide to cover the basics and cover the differences between geoms.
 -   [**The R Graph Gallery**](https://r-graph-gallery.com/) - Blog site maintained by [Yan Holtz](https://twitter.com/R_Graph_Gallery) and other contributors. Coding walk-thrus are available for all types of charts. I frequent this site a lot for inspiration.
--   [**ggplot2 Tutorial for Beautiful Plotting in R**](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/) - Cedric's work is exceptional, he has a wealth of knowledge to offer about ggplot2. I particularly like this post that covers the basics.
+-   [**ggplot2 Tutorial for Beautiful Plotting in R**](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/) - Cédric Scherer's work is exceptional - he's a ggplot2 Data Vizard. I particularly like this post that covers the basics.
 -   [**The MockUp**](https://themockup.blog/)- Tom Mock covers a lot of different data and data viz topics on his blog. I love his content on tables. HTom is also the brains behind `gtExtras`
 -   [**reactablemftr Cookbook**](https://kcuilla.github.io/reactablefmtr/articles/reactablefmtr_cookbook.html) - Tons of great examples how to use `reactablefmtr` on Kyle Cuilla's site. 
 -   [**TidyTuesday with David Robinson**](https://www.youtube.com/watch?v=5ub92c-5xFQ&list=PL19ev-r1GBwkuyiwnxoHTRC8TTqP8OEi8)- If you're learning by watching, David Robinson has a great YouTube series where he walks thru different TidyTuesday prompts in R.
