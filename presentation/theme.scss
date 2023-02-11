@@ -1,0 +1,45 @@
+/*-- scss:defaults --*/
+
+// fonts
+$font-family-sans-serif: "Roboto";
+
+// colors
+$body-bg: #ffffff !default;
+$body-color: #000 !default;
+$link-color: #FF2974 !default;
+$selection-bg: #26351c !default;
+
+// headings
+$presentation-heading-font: "Roboto Slab";
+$presentation-heading-color: #00A7E4 !default;
+
+/*-- scss:rules --*/
+
+.reveal a {
+  line-height: 1em;
+}
+
+.subtitle{
+  color: #00A7E4 !important;
+  font-weight:bold;
+  font-family: "Roboto Slab";
+}
+
+div.quarto-title-author-name{
+  color:#B5B5B5;
+}
+
+.reveal .slide figure>figcaption{
+  color: #8E8E8E;
+  font-size:0.5em;
+  margin-top:-0.3em;
+  margin-left:0.75em;
+}
+
+li{
+  font-size:30px;
+}
+
+.reveal h2{
+  margin-bottom:15px;
+}
