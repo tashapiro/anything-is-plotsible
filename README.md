@@ -21,7 +21,7 @@ List of some of the data visual packages reviewed in this talk.
 | [`highcharter`](https://jkunst.com/highcharter/)                                                               | Interactive Graphics | R wrapper for highcharter (JS data viz). Allows users to create interactive plots and charts.                                                                                             |
 | [`plotly`](https://plotly.com/r/)                                                                              | Interactive Graphics | Interactive charts                                                                                                                                                                        |
 
-## 🔢 Data Libraries
+## 🔢 Data Packages
 
 Don't have your own data to explore? There are bunch of cool data packages you can explore to help you get started. Here are a few:
 
