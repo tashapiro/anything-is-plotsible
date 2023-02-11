@@ -1,10 +1,17 @@
 # Anything Is Plotsible
 
+![](images/title-slide.png)
+
 ## Overview
+
+Brought to you by [R-Ladies Abuja](https://twitter.com/RLadiesAbuja)
+
+### About
 
 This is an introductory talk designed for people who are new to R and want to learn data visualization. In this talk, we will explore a variety of plot types and the different R packages avaialble to bring your design ideas to life. No prior coding experience required or software installationr required (no hands on coding).
 
-All material is available here. Slides were generated using [Quarto revealjs](https://quarto.org/docs/presentations/revealjs/).
+### Materials
+Slides were generated using [Quarto revealjs](https://quarto.org/docs/presentations/revealjs/).
 
 ## 📦 Data Viz Packages
 
