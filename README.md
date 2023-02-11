@@ -45,7 +45,7 @@ Challenges series are a fun way to learn new data viz tricks, and a great way to
 
 -   [**#30DayChartChallenge**](https://30daychartchallenge.org/) - similar to #30DayMapChallenge, this challenge has a specific prompt each day. Usually occurs in April, initially launched in 2022.
 
-## 📚 Resources for Beginners
+## 📚 Free Resources for Beginners
 
 There are tons of data visualization tutorials available online. It's impossible to list them all. Here are a few that have helped me in the past:
 
