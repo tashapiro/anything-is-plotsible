@@ -1,0 +1,457 @@
+---
+#title: "Anything is Plotsible"
+subtitle: "Exploring Data Viz in R"
+author: "Tanya Shapiro | R-Ladies Abuja"
+#format: html
+format:
+  revealjs:
+    theme: "theme.scss"
+    footer: "Tanya Shapiro | R-Ladies Abuja"
+    slide-number: true
+editor: visual
+---
+
+##  {#TitleSlide data-menu-title="TitleSlide" background-color="white" background-image="images/title-slide.png" background-position="left" background-size="contain"}
+
+```{r setup, echo=FALSE, include=FALSE}
+library(fontawesome)
+library(tidyverse)
+library(showtext)
+library(sysfonts)
+library(ggtext)
+library(ggimage)
+library(highcharter)
+library(countrycode)
+
+sysfonts::font_add('neue', regular = 'fonts/NeueHaasGrosek.otf', bold="fonts/NeueHaasGrosekBold.otf")
+sysfonts::font_add('fb', 'fonts/Font Awesome 6 Brands-Regular-400.otf')
+font_add('fs', 'fonts/Font Awesome 6 Free-Solid-900.otf')
+
+showtext::showtext_auto()
+showtext::showtext_opts(dpi="300")
+
+pal = c("#00B2F3","#12BBA9","#F8B61B","#F55822")
+font="neue"
+```
+
+## Today's Agenda
+
+<center style="margin-bottom:50px;margin-top:50px;">
+
+**Relax! No hands-on coding today**
+
+</center>
+
+::: columns
+::: {.column width="60%"}
+👋 Quick intro
+
+📊 Explore visuals & libraries
+
+📚 Links to resources
+
+✋ Q&A
+:::
+
+::: {.column width="40%"}
+![](images/relax.gif)
+:::
+:::
+
+## A Non-Traditional Road
+
+```{r journey, fig.align='center'}
+
+source('plotsible-data.R')
+
+ggplot()+
+  geom_line(data=spline, 
+            mapping=aes(x=x, y=y, color=tag, group=tag),
+            linewidth = 15, 
+            show.legend = FALSE)+
+  geom_line(data=spline, 
+            mapping=aes(x=x, y=y),
+            linetype="dashed", color="white")+
+  geom_segment(data=icons, mapping=aes(x=x, xend=x, y=y_point, yend=y_text, color=tag), size=0.7, linetype="dotted")+
+  geom_textbox(data=icons, mapping=aes(x=x, label=text, y=y_text),
+               halign=0.5, box.size=NA)+
+  geom_point(data = icons,  mapping = aes(x=x, y=y_point, color=tag), fill="white", shape=21, size=18, stroke=1.5)+
+  geom_textbox(data=icons, mapping=aes(x=x_icon, y=y_icon, label=icon, color=tag), 
+               fill = NA, size= 8, halign=0.5, show.legend=FALSE,
+               box.size=NA)+
+  geom_textbox(mapping=aes(x=2017.2, y=1.2, label="**Fell in love with R**<br>First discovered #TidyTuesday"), halign=0.5, face="italic", box.size=NA,width=unit(2,"inches"))+
+  geom_curve(mapping=aes(x=2018, xend=2019.4, y=0.95, yend=0.1), curvature=-0.3, linewidth=0.2, arrow= arrow(length=unit(0.1, "inches")))+
+  geom_image(mapping=aes(x=2010.75, y=0.8, image="images/headshot-circle.png"), size=0.0625, asp=2.1)+
+  annotate(geom="text", x=2010.75, y=1.22, label="My Data Story", fontface="bold", family=font)+
+  scale_y_continuous(limits=c(-1.35,2), expand=c(0,0))+
+  scale_x_continuous(limits=c(2010,2025), breaks = c(2011, 2014, 2017, 2020, 2023))+
+  scale_color_manual(values=pal,guide = guide_legend(title = "", override.aes = list(shape=19)))+
+  labs(color="")+
+  theme(text = element_text(family=font), 
+        legend.position = "none",
+        plot.title=element_text(face="bold"),
+        legend.key = element_blank(),
+        panel.background = element_blank(),
+        axis.text.x=element_text(color="black", family=font, size=12, margin=margin(t=5)),
+        axis.text.y = element_blank(),
+        axis.title=element_blank(),
+        axis.ticks = element_blank())
+
+```
+
+<center style="font-size:24px;color:#3D3D3D;margin-top:20px;margin-bottom:20px;">
+
+[Anyone]{style="text-decoration: underline;"} can learn R! Open source with a very supportive community.
+
+</center>
+
+## Data Viz Workflows
+
+<center>
+
+::: columns
+::: {.column width="25%"}
+<center>**Get Data**</center>
+
+![](images/grocery-shopping.jpg){fig-align="center" width="100%"}
+
+::: {style="margin-top:-40px;font-size:10px;text-align:left;margin-left:20px;"}
+-   Read csv, xlsx
+
+-   Web scrape
+
+-   Connect DB
+
+-   APIs
+
+-   Data libraries
+:::
+:::
+
+::: {.column width="25%"}
+<center>**Prep Data**</center>
+
+![](images/mise-en-place.jpg){fig-align="center" width="100%"}
+
+::: {style="margin-top:-40px;font-size:10px;text-align:left;margin-left:30px;"}
+-   Clean
+
+-   Filter
+
+-   Aggregate
+
+-   Reshape
+:::
+:::
+
+::: {.column width="25%"}
+<center>**Visualize**</center>
+
+![](images/cooking.jpg){fig-align="center" width="100%"}
+
+::: {style="margin-top:-40px;font-size:10px;text-align:left;margin-left:30px;"}
+-   Static plots
+
+-   Tables
+
+-   Interactive viz
+
+-   Maps
+:::
+:::
+
+::: {.column width="25%"}
+<center>**Deliver**</center>
+
+![](images/serving-food.jpg){fig-align="center" width="100%"}
+
+::: {style="margin-top:-40px;font-size:10px;text-align:left;margin-left:40px;"}
+-   Export as is
+
+-   Embed in reports or site
+
+-   Dashboards and apps
+:::
+:::
+:::
+
+</center>
+
+# Let me introduce you to some of my favorite R packages...
+
+## Meet my bff <code>ggplot2</code>
+
+::: columns
+::: {.column width="40%"}
+-   **Popular** - a staple package in data viz R world
+
+-   **Versatile** - build a variety of graphics (even maps!)
+
+-   **Customizeable** - colors, scales, fonts, themes, etc.
+
+-   **Accessible** - lots of learning resources available
+
+:::
+
+::: {.column width="60%"}
+![If `ggplot2` were a Pokémon, it would probably be Ditto. Ditto is able to transform into any Pokémon. Similarly, `ggplot2` can be used to build a number of different plots and charts.](images/ditto.jpeg){width="100%"}
+:::
+:::
+
+## Example of <code>ggplot2</code> in action
+
+::: columns
+::: {.column width="40%"}
+**Background**
+
+-   Part of [#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-11-23/readme.md), data from `datardis`
+
+-   Inspired by [Cédric Scherer](https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/)
+
+**Libraries**
+
+-   `ggplot2` - main plot
+
+-   `ggimage` - plot images
+
+-   `ggtext` - enhance text
+
+-   `sysfonts` - import fonts
+:::
+
+::: {.column width="60%"}
+![Behind the scenes process of creating my [Doctor Who was Best?](https://github.com/tashapiro/TidyTuesday/blob/master/2021/W48/doctor_who.R) plot. Created with <code>camcorder</code>.](images/plot-doctor-who.gif){style="verical-align:middle;" fig-align="center"}
+:::
+:::
+
+## ggplot: Traditional Plots 📊
+
+::: columns
+::: {.column width="55%"}
+![[Line plot](https://github.com/tashapiro/tanya-data-viz/blob/main/chatgpt-lensa/chatgpt-lensa.R) comparing Google search trends for ChatGPT vs. Lensa. Created with `ggplot2` + `geomtextpath`. Data pulled directly from `gtrendsR`.](images/chatgpt-lensa.png)
+:::
+::: {.column width="45%"}
+![[Bar Plot](https://github.com/tashapiro/horror-movies) of top horror movies by total revenue. Created with `ggplot2` + `ggimage`. ](images/horror-movies.png)
+:::
+:::
+
+## ggplot: Geospatial / Maps 🗺️
+
+::: columns
+::: {.column width="50%"}
+![[Basel, Switzerland](https://github.com/tashapiro/30DayMapChallenge/blob/main/2021/basel-openstreetmap/basel_map.R) map created with `ggplot2`, `sf`, and `osm`. Part of the #30DayMapChallenge.](images/map-basel.jpeg){fig-align="center" width="80%"}
+:::
+
+::: {.column width="50%"}
+![[Flag Colors Around The World](https://github.com/tashapiro/30DayMapChallenge/blob/main/2021/flag-rgb-map/flag-map.R) created with `ggplot2`, combined with `cowplot`](images/map-world-flags.png)
+:::
+:::
+
+## ggplot: Pushing The Limits 🎨
+
+[You can use `ggplot2` to create designs that are also out of the box...]{style="font-size:25px"}
+
+::: columns
+::: {.column width="50%"}
+![[Plot](https://github.com/tashapiro/tanya-data-viz/blob/main/nintendo-switch/code/nintendo-switch.R) styled in the shape of a Nintendo Switch](images/plot-switch.png)
+:::
+::: {.column width="50%"}
+![[Plot](https://github.com/tashapiro/TidyTuesday/blob/master/2022/W40/iphone-apps.R) styled in the shape of an iPhone](images/plot-iphone.png)
+:::
+:::
+
+## More Packages: Creating Tables
+
+::: columns
+::: {.column width="50%"}
+Of course there's plenty of room at the **table** for more favorites! ``reactable`` and ``gt`` are great for designing interactive tables. 
+:::
+::: {.column width="50%}
+![](images/table-friends.jpg)
+:::
+:::
+
+## Example of tables
+
+::: columns
+- `reactablefmtr` & `gtExtras` - add images, icons, color tiles, sparklines
+- Advanced styling with html code (`htmltools`, `htmlwidgets`)
+:::
+
+::: columns
+::: {.column width="48%"}
+![[The Rise & Fall of Big Tech 2022](https://github.com/tashapiro/TidyTuesday/blob/master/2023/W6/tt-big-tech.R)](images/big-tech-stocks.png){fig-align="center"}
+:::
+::: {.column width="52%"}
+![[Grand Slam Legends](https://github.com/tashapiro/tanya-data-viz/blob/main/tennis/womens-tennis.R)](images/womens-tennis.png){fig-align="center"}
+:::
+:::
+
+
+# Packages to explore for interactive visuals
+
+## `highcharter`
+
+::: columns
+::: {.column width="40%"}
+- R wrapper for JS library [highcharts](https://www.highcharts.com/)
+- Create interactive visuals
+- My example with another [#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-03-08/readme.md) dataset
+- Great examples with code on [package site](https://jkunst.com/highcharter/)
+- Works well with `shiny` apps
+:::
+::: {.column width="60%"}
+
+```{r highcharter, fig.width=6}
+
+#import data from tidytuesday github
+df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-03-08/erasmus.csv')
+
+countries = c("Germany","France","Italy","Spain","Belgium","United Kingdom","Poland")
+
+data<-df%>%
+  #use the countrycode function to convert codes to country names for both receiving and sending countries
+  mutate(
+    to= countrycode(receiving_country_code, origin="iso2c", destination="iso.name.en"),
+    from= countrycode(sending_country_code , origin="iso2c", destination="iso.name.en"),
+  )%>%
+  #United Kingdom and Greece not translated with ISO country codes, override with dplyr "replace"
+  mutate(
+    to = replace(to, receiving_country_code=="UK","United Kingdom"),
+    from = replace(from, sending_country_code=="UK","United Kingdom"),
+    to = replace(to, receiving_country_code=="EL","Greece"),
+    from = replace(from, sending_country_code=="EL","Greece")
+  )%>%
+  #summarise number of participants by sending and receiving country code
+  group_by(from, to)%>%
+  summarise(weight=sum(participants))%>%
+  arrange(-weight)%>%
+  ungroup()%>%
+  filter(from!=to & from %in% countries & to %in% countries)
+
+
+data_list <- lapply(split(data,seq(nrow(data))), as.list)
+
+
+wheel_data = list()
+for(i in 1:length(data_list)){
+  wheel_data = append(wheel_data,list(data_list[[i]]))
+}
+
+pal<-c("#0061fd","#1cc6ff","#00b661","#5bf34d","#ffdd00","#ff7d00","#da2818","#ff006d","#8f00ff","#453435","black","grey80")
+
+my_own_theme <- hc_theme(
+  colors = pal,
+  chart = list(
+    backgroundColor = NULL
+  ),
+  title = list(
+    style = list(
+      color = "#333333",
+      fontFamily = "Lato",
+      fontWeight="bold"
+    )
+  ),
+  subtitle = list(
+    style = list(
+      color = "#666666",
+      fontFamily = "Lato"
+    )
+  ),
+  caption = list(
+    style = list(
+      color = "#666666",
+      fontFamily = "Lato"
+    )
+  ),
+  tooltip = list(
+    style = list(
+      fontFamily = "Lato"
+    )
+  ),
+  plotOptions = list(
+    series = list(
+      dataLabels = list(style=list(fontFamily = "Lato")
+      ))
+  ),
+  legend = list(
+    itemStyle = list(
+      fontFamily = "Lato",
+      color = "black"
+    ),
+    itemHoverStyle = list(
+      color = "gray"
+    )
+  )
+)
+
+highchart()%>%
+  hc_chart(type = 'dependencywheel') %>%
+  hc_add_series(
+    data = wheel_data,
+    name = "Number of Students"
+  )%>%
+  hc_title(
+    text = "<span style='font-size:15pt;'>ERASMUS STUDENT MOBILITY</span>"
+  )%>%
+  hc_subtitle(
+    text= "Movement of participants in top participating countries between 2014-2020"
+  )%>%
+  hc_add_theme(my_own_theme)
+
+```
+:::
+:::
+
+## `leaflet` {background-iframe="https://tashapiro.github.io/drag-race/code/map-queens" background-interactive="true"}
+
+
+## `ggiraph` - interactive `ggplot2`!
+
+Include tooltips on hover and click events. View [here](https://tashapiro.github.io/nobel-prize-laurates/plots/nobel-square.html).
+
+![](images/plot-nobel.png){fig-align="center" width="100%"}
+
+
+## `shiny` 
+
+Plug your interactive visuals into a [`shiny`](https://shiny.rstudio.com/) app! Here's an [app](https://tshapiro.shinyapps.io/pelotanya/) I created to analyze my Peloton workout data.
+
+![](images/shiny-app.png){fig-align="center" width="90%"}
+
+## We all start somewhere...
+
+Anything is plotsible, the trick is to start and keep trying. Throwback to my first ever #TidyTuesday plot
+
+::: columns
+::: {.column width="40%"}
+![](images/first-tidytuesday-tweet.png)
+:::
+
+::: {.column width="60%"}
+![](images/first-tidytuesday-plot.jpeg){fig-align="center"}
+:::
+:::
+
+## Thank You!
+
+And that's a wrap! More info on resources [here](https://github.com/tashapiro/anything-is-plotsible/blob/main/README.md). 
+
+We will now close with Q&A
+
+::: columns
+::: {.column width="60%"}
+
+`r fa("twitter", fill="#00A7E4")` [tanya_shapiro](https://twitter.com/tanya_shapiro)
+
+`r fa("github", fill="#00A7E4")` [tashapiro](https://github.com/tashapiro)
+
+`r fa("linkedin", fill="#00A7E4")` [linkedin.com/in/shapirotanya](https://www.linkedin.com/in/shapirotanya/)
+
+`r fa("mastodon", fill="#00A7E4")` [fosstodon/\@tanya_shapiro](https://fosstodon.org/@tanya_shapiro)
+:::
+
+::: {.column width="35%"}
+![](images/headshot-circle.png){fig-align="center"}
+:::
+:::
