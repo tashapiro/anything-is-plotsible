@@ -15,6 +15,7 @@ This is an introductory talk designed for people who are new to R and want to le
 Slides were generated using [Quarto revealjs](https://quarto.org/docs/presentations/revealjs/)
 
 -   [HTML Slides](https://tashapiro.github.io/anything-is-plotsible/presentation/anything-is-plotsible.html)
+-   [Video recording](https://www.youtube.com/watch?v=C_smyZPVgR8)
 -   [Code for slides](https://github.com/tashapiro/anything-is-plotsible/blob/main/code/rladies-plotsible.qmd)
 
 ## 📦 Data Viz Packages
