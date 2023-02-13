@@ -12,7 +12,10 @@ This is an introductory talk designed for people who are new to R and want to le
 
 ### Materials
 
-Slides were generated using [Quarto revealjs](https://quarto.org/docs/presentations/revealjs/).
+Slides were generated using [Quarto revealjs](https://quarto.org/docs/presentations/revealjs/)
+
+-   [HTML Slides](https://tashapiro.github.io/anything-is-plotsible/presentation/anything-is-plotsible.html)
+-   [Code for slides](https://github.com/tashapiro/anything-is-plotsible/blob/main/code/rladies-plotsible.qmd)
 
 ## 📦 Data Viz Packages
 
@@ -34,7 +37,7 @@ List of some of the data visual packages reviewed in this talk.
 Don't have your own data to explore? There are bunch of cool data packages you can explore to help you get started. Here are a few:
 
 | Package                                                            | Category | Description                                                                            |
-|------------------------|--------------------|------------------------|
+|-------------------------|----------------------|-------------------------|
 | [`palmerpenguins`](https://allisonhorst.github.io/palmerpenguins/) | Zoology  | An alternative to the iris dataset, great for beginners to explore data visualization. |
 | [`nflfastR`](https://www.nflfastr.com/)                            | Sports   | NFL Football statistics, offers data the play-by-play level                            |
 | [`nbastats`](https://github.com/abresler/nbastatR)                 | Sports   | NBA stats                                                                              |
